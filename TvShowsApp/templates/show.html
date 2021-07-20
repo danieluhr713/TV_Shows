@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Restful TV Shows</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-5">
+                <h1>Add a New Show</h1>
+            </div>
+            <div class="col-5">
+                <a href="/shows/shows">Go back</a>
+            </div>
+        </div>
+
+        {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/shows/create" method="post" class="col-md-6">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title">
+            </div>
+            <div class="row">
+                <div class="form-group col-5">
+                    <label for="network">Network</label>
+                    <input type="text" name="network" id="network" class="form-control">
+                </div>
+                <div class="form-group col-6">
+                    <label for="releaseDate">Release Date</label>
+                    <input type="date" name="releaseDate" id="releaseDate">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description">
+            </div>
+            <button class="btn btn-secondary">Create</button>
+        </form>
+    </div>
+    
+</body>
+</html>

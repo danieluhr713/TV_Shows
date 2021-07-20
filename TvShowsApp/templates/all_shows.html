@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>All Shows</title>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>All Shows</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Network</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for show in show %}
+                <tr>
+                    <td>{{show.id}}</td>
+                    <td>{{show.title}}</td>
+                    <td>{{show.network}}</td>
+                    <td>{{show.description}}</td>
+                    <td>{{show.releaseDate}}</td>
+                    <td>
+                        <div class="row">
+                            <div class="col">
+                                <a href="/shows/{{show.id}}">View</a>
+                            </div>
+                            <div class="col">
+                                <p>|</p>
+                            </div>
+                            <div class="col">
+                                <a href="/shows/{{show.id}}/edit">Edit</a>
+                            </div>
+                            <div class="col">
+                                <p>|</p>
+                            </div>
+                            <div class="col">
+                                <a href="/shows/{{show.id}}/delete">Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/shows/new">Add a new show</a>
+    </div>
+    
+</body>
+</html>
